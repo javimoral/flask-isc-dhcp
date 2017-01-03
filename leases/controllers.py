@@ -13,7 +13,7 @@ def index():
     for lease in current_leases:
         lease.vendor = find_vendor(lease.ethernet[:8])
 
-    return render_template("show_current.html", title="Current Leases", leases=current_leases)
+    return render_template("show_current.html.j2", title="Current Leases", leases=current_leases)
 
 def find_vendor(vendor_id):
     formatted_vendor_id = vendor_id.replace(":", "").upper()
@@ -26,4 +26,4 @@ def find_vendor(vendor_id):
 def history():
     event_history = mongo.db.history.find()
 
-    return render_template("show_history.html", title="History", events=event_history)
+    return render_template("show_history.html.j2", title="History", events=event_history)
