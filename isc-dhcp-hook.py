@@ -24,5 +24,5 @@ if __name__ == "__main__":
 
     collection = MongoClient().leases.history
     record = dict(zip(arguments, sys.argv[1:]))
-    record["eventDate"] = datetime.datetime.now()
+    record["time"] = datetime.datetime.now()
     collection.insert_one(record)
