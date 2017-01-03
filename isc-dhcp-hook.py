@@ -1,5 +1,14 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+Hook for ISC DHCP
+Should be called with execute when an event is generated
+"""
+
 import sys
+import datetime
+
 from pymongo import MongoClient
 
 if __name__ == "__main__":
@@ -11,7 +20,9 @@ if __name__ == "__main__":
         4: Hostname
     """
 
-    arguments = ["eventType", "assignedIP", "macAddress", "hostname"]
+    arguments = ["eventType", "assignedIP", "macAddress", "hostname", "leaseDuration"]
 
     collection = MongoClient().leases.history
-    collection.insert_one(dict(zip(arguments, sys.argv[1:])))
+    record = dict(zip(arguments, sys.argv[1:]))
+    record["eventDate"] = datetime.datetime.now()
+    collection.insert_one(record)

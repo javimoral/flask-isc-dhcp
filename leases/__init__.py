@@ -4,7 +4,7 @@
 import tzlocal
 import os
 from flask import Flask
-from .models import OUI
+from flask_pymongo import PyMongo
 app = Flask(__name__)
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -14,8 +14,7 @@ app.config['DEBUG'] = False if os.environ.get('DEBUG', 'False') == 'False' else 
 app.config['LEASES_FILE'] = os.environ.get('LEASES_FILE')
 app.config['TIMEZONE'] = str(tzlocal.get_localzone())
 
-# Load OUI Database
-oui = OUI(os.path.join(here, '../oui.txt'))
+mongo = PyMongo(app)
 
 if app.config['LEASES_FILE'] is None:
     print("Leases file must be defined")

@@ -1,13 +1,12 @@
 from leases import app
 from flask import render_template
 from flask import request
+from . import mongo
 
 from isc_dhcp_leases import Lease, IscDhcpLeases
 
 import pytz
 from datetime import datetime
-
-from . import oui
 
 @app.route("/")
 def index():
@@ -20,7 +19,10 @@ def index():
         lease.diff = lease.end - lease.start
         lease.start = datetime.strftime(lease.start, '%H:%M:%S')
         lease.end = datetime.strftime(lease.end, '%H:%M:%S')
-        lease.vendor = oui.get_vendor_string(lease.ethernet[:8])
+        lease.vendor = \
+            mongo.db.oui.find_one({"vendor_id":
+                lease.ethernet[:8].replace(":", "").upper()})\
+                ["vendor_name"]
     return render_template("show_current.html", title="Current Leases", leases=current_leases)
 
 def utc_to_local(utc_dt):
