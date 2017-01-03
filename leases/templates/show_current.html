@@ -6,8 +6,8 @@
 <table>
 <tr>
     <th>Hostname</th>
+    <th>Mac</th>
     <th>IP</th>
-    <th>Ethernet</th>
     <th>Vendor</th>
     <th>Start Time</th>
     <th>End Time</th>
@@ -17,12 +17,12 @@
   {% for lease in leases %}
   <tr>
     <td>{{lease.hostname}}</td>
-    <td>{{lease.ip}}</td>
     <td>{{lease.ethernet}}</td>
+    <td>{{lease.ip}}</td>
     <td>{{lease.vendor}}</td>
-    <td>{{lease.start}}</td>
-    <td>{{lease.end}}</td>
-    <td>{{lease.diff}}</td>
+    <td>{{lease.start|tolocaltime(config.TIMEZONE)|datetimeformat('%H:%M:%S')}}</td>
+    <td>{{lease.end|tolocaltime(config.TIMEZONE)|datetimeformat('%H:%M:%S')}}</td>
+    <td>{{lease.end - lease.start}}</td>
   </tr>
   {% endfor %}
 </table>

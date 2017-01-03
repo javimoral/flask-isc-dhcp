@@ -5,9 +5,9 @@ import tzlocal
 import os
 from flask import Flask
 from flask_pymongo import PyMongo
-app = Flask(__name__)
+from .jinja_filters import *
 
-here = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__)
 
 # Load config
 app.config['DEBUG'] = False if os.environ.get('DEBUG', 'False') == 'False' else True
@@ -21,3 +21,8 @@ if app.config['LEASES_FILE'] is None:
     exit(-1)
 
 import leases.controllers
+
+# Jinja2 custom filters
+app.jinja_env.filters['tolocaltime'] = tolocaltime
+app.jinja_env.filters['datetimeformat'] = datetimeformat
+app.jinja_env.filters['secstotimedelta'] = secstotimedelta

@@ -21,10 +21,10 @@
     <td>{{event.hostname}}</td>
     <td>{{event.macAddress}}</td>
     <td>{{event.assignedIP}}</td>
-    <td>{{event.time.strftime('%d-%m-%Y %H:%M:%S')}}</td>
+    <td>{{event.time|tolocaltime(config.TIMEZONE)|datetimeformat('%d-%m-%Y %H:%M:%S')}}</td>
     <td>
       {% if event.eventType == "commit" %}
-      Dur: {{event.leaseDuration}} s
+      Dur: {{event.leaseDuration|secstotimedelta}}
       {% endif %}
     </td>
   </tr>
