@@ -25,6 +25,12 @@ def index():
                 ["vendor_name"]
     return render_template("show_current.html", title="Current Leases", leases=current_leases)
 
+@app.route("/history")
+def history():
+    event_history = mongo.db.history.find()
+
+    return render_template("show_history.html", title="History", events=event_history)
+
 def utc_to_local(utc_dt):
    local_tz = pytz.timezone(app.config['TIMEZONE'])
    local_dt = utc_dt.replace(tzinfo = pytz.utc).astimezone(local_tz)

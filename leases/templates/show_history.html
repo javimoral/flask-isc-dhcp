@@ -1,0 +1,35 @@
+{% extends "header.html" %}
+{% block body %}
+
+<div class="container">
+<div class="row">
+<table>
+<tr>
+  <th>Tipo de evento</th>
+  <th>Hostname</th>
+  <th>Mac</th>
+  <th>IP</th>
+  <th>Fecha</th>
+  <th>Info</th>
+  </tr>
+
+  {% for event in events %}
+  <tr>
+    <td>
+      {{event.eventType}}
+    </td>
+    <td>{{event.hostname}}</td>
+    <td>{{event.macAddress}}</td>
+    <td>{{event.assignedIP}}</td>
+    <td>{{event.eventDate.strftime('%d-%m-%Y %H:%M:%S')}}</td>
+    <td>
+      {% if event.eventType == "commit" %}
+      Dur: {{event.leaseDuration}} s
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+</div>
+{% endblock %}
