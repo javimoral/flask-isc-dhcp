@@ -24,6 +24,6 @@ def find_vendor(vendor_id):
 
 @app.route("/history")
 def history():
-    event_history = mongo.db.history.find()
+    event_history = mongo.db.history.find().sort("time", -1)
 
     return render_template("show_history.html.j2", title="History", events=event_history)
