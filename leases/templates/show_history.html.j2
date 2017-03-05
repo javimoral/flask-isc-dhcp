@@ -3,6 +3,8 @@
 
 <div class="container">
 <div class="row">
+  {{pagination.info}}
+  {{pagination.links}}
 <table>
 <tr>
   <th>Tipo de evento</th>
@@ -30,6 +32,7 @@
   </tr>
   {% endfor %}
 </table>
+{{pagination.links}}
 </div>
 </div>
 {% endblock %}
