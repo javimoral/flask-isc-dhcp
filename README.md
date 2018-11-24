@@ -1,6 +1,6 @@
 # Flask DHCP Leases
 ## Introduction
-Provides a web interface for checking current DHCP leases when using ISC-DHCP.
+Quick and dirty web interface for checking current DHCP leases when using ISC-DHCP.
 
 By default, ISC-DHCP writes leases into a file, we read the file and present the
 result in a friendly web interface.

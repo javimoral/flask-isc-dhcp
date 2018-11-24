@@ -1,0 +1,37 @@
+# The format of this file is documented in the dhcpd.leases(5) manual page.
+# This lease file was written by isc-dhcp-4.3.1
+
+lease 192.168.0.2 {
+  starts 0 2018/01/07 16:13:30;
+  ends 1 2018/01/08 04:13:30;
+  tstp 1 2018/01/08 04:13:30;
+  binding state active;
+  hardware ethernet 3c:d9:2b:9b:db:ae;
+  client-hostname "OK_Host";
+  set vendor-class-identifier = "dhcpcd-5.2.10:Linux-3.8.13+:armv7l:Marvell Berlin SoC (Flattened Device Tree)";
+  set clnm = "OK_Host";
+  set ddns-fwd-name = "ok_host.lan";
+}
+lease 192.168.0.3 {
+  starts 4 2017/12/28 22:13:30;
+  ends 5 2017/12/29 22:13:30;
+  tstp 1 2017/01/23 10:07:03;
+  cltt 0 2017/01/22 13:14:26;
+  binding state active;
+  hardware ethernet 3c:d9:2b:9b:db:ae;
+  client-hostname "Old_Lease_Host";
+  set clnm = "Old_Lease_Host";
+  set ddns-fwd-name = "old_host.lan";
+}
+lease 192.168.0.4 {
+  starts 0 2018/01/07 16:13:30;
+  ends 1 2018/01/08 04:13:30;
+  tstp 1 2018/01/08 04:13:30;
+  cltt 0 2018/01/07 16:13:30;
+  binding state active;
+  hardware ethernet 48:50:73:9b:db:ae;
+  client-hostname "Microsoft_Host";
+  set vendor-class-identifier = "MSFT 5.0";
+  set clnm = "Microsoft Host";
+  set ddns-fwd-name = "microsoft_host.lan";
+}

@@ -1,0 +1,47 @@
+# The format of this file is documented in the dhcpd.leases(5) manual page.
+# This lease file was written by isc-dhcp-4.3.1
+
+lease 192.168.0.2 {
+  starts $start_date_ok;
+  ends $end_date_ok;
+  tstp $end_date_ok;
+  binding state active;
+  hardware ethernet 3c:d9:2b:$random_mac;
+  client-hostname "OK_Host";
+  set clnm = "OK_Host";
+  set ddns-fwd-name = "ok_host.lan";
+}
+lease 192.168.0.3 {
+  starts $start_date_old;
+  ends $end_date_old;
+  tstp 1 2017/01/23 10:07:03;
+  cltt 0 2017/01/22 13:14:26;
+  binding state active;
+  hardware ethernet 3c:d9:2b:$random_mac;
+  client-hostname "Old_Lease_Host";
+  set clnm = "Old_Lease_Host";
+  set ddns-fwd-name = "old_host.lan";
+}
+lease 192.168.0.4 {
+  starts $start_date_ok;
+  ends $end_date_ok;
+  tstp $end_date_ok;
+  cltt $start_date_ok;
+  binding state active;
+  hardware ethernet 48:50:73:$random_mac;
+  client-hostname "Microsoft_Host";
+  set vendor-class-identifier = "MSFT 5.0";
+  set clnm = "Microsoft Host";
+  set ddns-fwd-name = "microsoft_host.lan";
+}
+lease 192.168.0.5 {
+  starts $start_date_ok;
+  ends $end_date_ok;
+  tstp $end_date_ok;
+  cltt $start_date_ok;
+  binding state active;
+  hardware ethernet fe:fe:fe:$random_mac;
+  client-hostname "Not_in_OUI_List_Host";
+  set clnm = "Not in OUI List Host";
+  set ddns-fwd-name = "not_in_oui_host.lan";
+}
